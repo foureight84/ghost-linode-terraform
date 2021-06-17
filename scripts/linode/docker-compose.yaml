@@ -1,0 +1,42 @@
+version: '3.1'
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      -  vhost.d:/etc/nginx/vhost.d
+      -  nginx.html:/usr/share/nginx/html
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+  nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    depends_on:
+      - "nginx-proxy"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:rw
+      - vhost.d:/etc/nginx/vhost.d
+      - nginx.html:/usr/share/nginx/html
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+  ghost:
+    image: ghost:4-alpine
+    restart: always
+    depends_on:
+      - "nginx-proxy"
+    ports:
+      - 127.0.0.1:8080:2368
+    volumes:
+      - ./blog/data/ghost:/var/lib/ghost/content
+    environment:
+      - url=https://${ghost_blog_url}
+      - VIRTUAL_HOST=${ghost_blog_url}
+      - LETSENCRYPT_HOST=${ghost_blog_url}
+      - LETSENCRYPT_EMAIL=${letsencrypt_email}
+volumes:
+  vhost.d:
+  nginx.html:
