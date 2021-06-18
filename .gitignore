@@ -10,6 +10,9 @@
 # conf
 *.conf
 
+# tfvars
+*.tfvars
+
 # Directories
 .terraform/
 .vagrant/
