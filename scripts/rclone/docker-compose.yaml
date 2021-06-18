@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  rclone:
+    image: rclone/rclone
+    volumes:
+      - ${rclone_dir}/config:/config/rclone
+      - ${rclone_dir}/mount:/data:shared
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+    devices:
+      - /dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: "mount gdrive: /data"

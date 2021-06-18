@@ -1,0 +1,6 @@
+[gdrive]
+type = drive
+client_id =                 //client_id generated for Google Drive API 
+client_secret =             //client_secret generated for Google Drive API 
+scope = drive.file
+token = {""}                //token generated during rclone wizard authentication with Google Drive 

@@ -47,7 +47,7 @@ variable "linode_tags" {
 # Cloudflare variables
 variable "cloudflare_domain" {
   type = string
-  description = "Domain name"
+  description = "Domain name. ex. foureight84.com"
 }
 
 variable "cloudflare_email" {
@@ -57,7 +57,7 @@ variable "cloudflare_email" {
 
 variable "cloudflare_api_key" {
   type = string
-  description = "Cloudflare API access key"
+  description = "Cloudflare API access key. Not to be mistaken with API token"
 }
 
 # others
@@ -69,5 +69,22 @@ variable "letsencrypt_email" {
 
 variable "ghost_blog_url" {
   type = string
-  description = "Blog URL"
+  description = "Blog URL. ex. blog.foureight84.com"
+}
+
+variable "enable_rclone" {
+  type = bool 
+  description = "Enable rclone backup"
+}
+
+variable "project_dir" {
+  type = string
+  description = "Project directory"
+  default = "/root/ghost"
+}
+
+variable "rclone_dir" {
+  type =  string
+  description = "Rclone directory"
+  default = "/root/rclone"
 }

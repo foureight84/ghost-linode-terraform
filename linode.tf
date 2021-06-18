@@ -1,6 +1,6 @@
 # Create Linode stackscript for boot time execution.
 resource "linode_stackscript" "ghost_deploy" {
-  script = "${chomp(file("${path.module}/scripts/linode/stackscript.sh"))}"
+  script = "${data.template_file.stackscript.rendered}"
 
   description = <<EOF
   Installs Docker and deploys ghost blog stack containers
@@ -33,5 +33,9 @@ resource "linode_instance" "ghost" {
 
   stackscript_data = {
     "DOCKER_COMPOSE" = "${data.template_file.docker_compose.rendered}"
+    "ENABLE_RCLONE" = var.enable_rclone
+    "RCLONE_DOCKER_COMPOSE" = "${data.template_file.rclone_docker_compose.rendered}"
+    "RCLONE_CONFIG" = "${data.template_file.rclone_config.rendered}"
+    "BACKUP_SCRIPT" = "${data.template_file.backup_script.rendered}"
   }
 }
