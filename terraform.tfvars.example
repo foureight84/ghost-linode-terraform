@@ -3,10 +3,10 @@
 
 linode_api_token = ""
 linode_label = ""
-linode_image = "linode/ubuntu20.04"
-linode_region = "us-west"
-linode_type = "g6-nanode-1"
-linode_authorized_users = [""]                    // user profile created on linode with associated ssh pub key
+linode_image = "linode/ubuntu20.04"               // see terraform linode provider documentation for these values
+linode_region = "us-west"                         // see terraform linode provider documentation for these values
+linode_type = "g6-nanode-1"                       // see terraform linode provider documentation for these values
+linode_authorized_users = [""]                    // user profile created on linode with associated ssh pub key. https://cloud.linode.com/profile/keys
 linode_group = "blog"
 linode_tags = [ "ghost", "docker" ]
 
