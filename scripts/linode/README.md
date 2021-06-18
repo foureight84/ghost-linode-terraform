@@ -1,6 +1,6 @@
 ### `stackscript.sh`
 
-Linode's boot time executiong script. https://www.linode.com/docs/guides/platform/stackscripts/
+Linode's first boot executiong script. https://www.linode.com/docs/guides/platform/stackscripts/
 
 We use this to automate env preparation.
 - Pass over bash and docker-compose scripts
