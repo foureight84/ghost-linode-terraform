@@ -1,0 +1,23 @@
+//project_dir = ""                                // default /root/ghost
+//rclone_dir = ""                                 // default /root/rclone
+
+linode_api_token = ""
+linode_label = ""
+linode_image = "linode/ubuntu20.04"
+linode_region = "us-west"
+linode_type = "g6-nanode-1"
+linode_authorized_users = [""]                    // user profile created on linode with associated ssh pub key
+linode_group = "blog"
+linode_tags = [ "ghost", "docker" ]
+
+linode_root_password = ""
+
+cloudflare_domain = ""                           // requires that your domain is already managed by cloudflare. value ex: foureight84.com
+cloudflare_email = ""
+cloudflare_api_key = ""                          // not to be mistaken with cf api token
+
+letsencrypt_email = ""
+
+ghost_blog_url = ""                              // ex. blog.foureight84.com
+
+enable_rclone =                                  // boolean (default false). change to true if using rclone. see README.md in rclone directory on how to setup config beforehand
