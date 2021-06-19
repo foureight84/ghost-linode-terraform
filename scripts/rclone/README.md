@@ -4,9 +4,11 @@ Rclone is a commandline program that manages your cloud storage accounts.
 
 This presents a nice solution to backing up small amount of data and provides portability in the even that you decide to switch hosts. For this project I am using Google Drive, but you could use any cloud storage supported by rclone.
 
+You will need a congfiguration file from an existing rclone setup and drop it into the `config` directory. 
+
 ### `docker-compose.yaml`
 
-Depending on the service you use, make note of the name you provide for the service during the rclone setup wizard. In my instance, I called my Google Drive connection `gdrive`. This is important aas you will need to modify the `docker-compose.yaml` command to reflect your use case.
+Depending on your particular rclone setup, make note of the name you entered for the cloud service during the rclone setup wizard. I named my Google Drive connection `gdrive`. This is important aas you will need to modify the `docker-compose.yaml` command to reflect your use case.
 
 ```command: "mount gdrive: /data"``` (replace 'gdrive' as needed).
 
