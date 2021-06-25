@@ -9,11 +9,11 @@
 days=7
 
 # What to backup
-backup_files="${project_dir}}/blog"
+backup_files="${project_dir}/blog"
 
 # Archive filename for yesterday
-day=$$(date -d "yesterday" +"%m-%d-%y")
-archive_file="backup-$$day.tgz"
+day="$(date -d "yesterday" +"%m-%d-%y")"
+archive_file="backup-$${day}.tgz"
 
 # Backup dir
 dest="${rclone_dir}/mount/backup"
@@ -42,7 +42,7 @@ date
 echo
 
 # Backup the files using tar.
-tar czf "$${dest}/latest.tgz" -C $$(dirname $${backup_files}) $$(basename $${backup_files})
+tar czf "$${dest}/latest.tgz" -C "$(dirname $${backup_files})" "$(basename $${backup_files})"
 
 # Print end status message.
 echo

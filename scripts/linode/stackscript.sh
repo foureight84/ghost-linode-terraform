@@ -7,7 +7,6 @@
 
 set +e +x
 RCLONE_PATH="${rclone_dir}"
-
 STACK_PATH="${project_dir}"
 mkdir -p "$${STACK_PATH}"
 
