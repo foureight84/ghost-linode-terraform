@@ -34,7 +34,7 @@ if [ $${ENABLE_RCLONE} ]; then
 
   # Add backup crontab
   # Runs at 11pm machine time (this could be UTC if timezone not set)
-  (crontab -l ; echo "* 23 * * * bash $${RCLONE_PATH}/backup.sh >/dev/null 2>&1") | crontab -
+  (crontab -l ; echo "0 23 * * * bash $${RCLONE_PATH}/backup.sh >/dev/null 2>&1") | crontab -
 
 
   cd "$${RCLONE_PATH}"
