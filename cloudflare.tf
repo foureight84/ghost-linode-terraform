@@ -1,10 +1,3 @@
-data "cloudflare_zones" "ghost_domain_zones" {
-  filter {
-    name   = var.cloudflare_domain
-    status = "active"
-  }
-}
-
 resource "cloudflare_record" "ghost_blog_record" {
   zone_id = lookup(data.cloudflare_zones.ghost_domain_zones.zones[0], "id")
   type    = "A"

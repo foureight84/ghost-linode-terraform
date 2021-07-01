@@ -40,3 +40,11 @@ data "template_file" "backup_script" {
     "rclone_dir" = "${var.rclone_dir}"
   }
 }
+
+/* Cloudflare */
+data "cloudflare_zones" "ghost_domain_zones" {
+  filter {
+    name   = var.cloudflare_domain
+    status = "active"
+  }
+}
