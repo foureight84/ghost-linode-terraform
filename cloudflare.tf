@@ -1,3 +1,4 @@
+# Create A record and point to origin
 resource "cloudflare_record" "ghost_blog_record" {
   zone_id = lookup(data.cloudflare_zones.ghost_domain_zones.zones[0], "id")
   type    = "A"
@@ -7,6 +8,7 @@ resource "cloudflare_record" "ghost_blog_record" {
 	proxied = true
  }
 
+# Update DNS settings for primary domain. notably enable end-to-end encryption
 resource "cloudflare_zone_settings_override" "ghost_zone_settings" {
     zone_id = lookup(data.cloudflare_zones.ghost_domain_zones.zones[0], "id")
     settings {
@@ -26,6 +28,7 @@ resource "cloudflare_zone_settings_override" "ghost_zone_settings" {
     }
 }
 
+# allow pathway for Let's Encrypt domain verification during SSL Cert request.
 resource "cloudflare_page_rule" "letsencrypt_verify" {
   zone_id = lookup(data.cloudflare_zones.ghost_domain_zones.zones[0], "id")
   target = "*${var.cloudflare_domain}/.well-known/*"
@@ -37,6 +40,7 @@ resource "cloudflare_page_rule" "letsencrypt_verify" {
 
 }
 
+# ensure that SSL requests go through cloudflare
 resource "cloudflare_authenticated_origin_pulls" "auth_origin_pull" {
   zone_id     = lookup(data.cloudflare_zones.ghost_domain_zones.zones[0], "id")
   enabled     = true

@@ -42,6 +42,8 @@ data "template_file" "backup_script" {
 }
 
 /* Cloudflare */
+
+# get managed domain being used for blog deployment. ex. foureight84.com
 data "cloudflare_zones" "ghost_domain_zones" {
   filter {
     name   = var.cloudflare_domain
