@@ -2,6 +2,7 @@ version: '3.1'
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
+    restart: always
     ports:
       - 80:80
       - 443:443
@@ -14,6 +15,7 @@ services:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
   nginx-proxy-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
     depends_on:
       - nginx-proxy
     volumes:

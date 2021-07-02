@@ -2,6 +2,7 @@ version: '3.1'
 services:
   rclone:
     image: rclone/rclone
+    restart: always
     volumes:
       - ${rclone_dir}/config:/config/rclone
       - ${rclone_dir}/mount:/data:shared
