@@ -34,7 +34,7 @@ fi
 
 # Removing older backup
 echo "Removing files older than $${days} in $${dest}"
-find $${dest} -mtime +$${days} -exec rm {} \;
+find $${dest} -type f -mtime +$${days} -delete
 
 # Print start status message
 echo "Backing up $${backup_files} to $${dest}/latest.tgz"
